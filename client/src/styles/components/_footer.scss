@@ -1,0 +1,19 @@
+footer{
+    display: flex;
+    justify-content: center;
+    height : 10vh;
+}
+
+#links{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+
+    & a{
+        margin: auto;
+        transition: transform .25s cubic-bezier(.13,-.77,1,1.62);
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+}

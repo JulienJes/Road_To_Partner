@@ -1,0 +1,14 @@
+.card{
+    background-color: $grey;
+    @include borderRadius;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-dates{
+        padding: 1rem 0;
+    }
+    &-btn a{
+        @include linkAsButton;
+    }
+}

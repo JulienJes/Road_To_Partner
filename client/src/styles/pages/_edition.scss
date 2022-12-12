@@ -1,0 +1,42 @@
+.arranged{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    &-sub{
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        margin-top: 2rem;
+    }
+}
+
+.presentation{
+    width: 49%;
+    background-color: $grey;
+    @include borderRadius;
+}
+
+.informations{
+    width: 49%;
+    background-color: $grey;
+    @include borderRadius;
+    & ul{
+        margin-left: 2rem;
+        li{
+        list-style-type: circle;
+        }
+    }
+}
+
+.inscriptions-over{
+    color: red;
+}
+
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    min-height: 70vh;
+}

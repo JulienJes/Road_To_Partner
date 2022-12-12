@@ -1,0 +1,106 @@
+//Fonts
+@font-face {
+    font-family: "font-1";
+    src: url(./assets/fonts/moon_get-Heavy.ttf);
+    font-display: swap;
+}
+
+
+// Variables
+$font: "font-1", sans-serif;
+
+$color-1: #ECBA63;
+$color-2: #7A2125 ;
+$color-3: #1F3C7A;
+$color-4: #BC3C47 ;
+$color-5: #315FB6;
+$black: #0E0E10;
+$white: #FDFDFD;
+$grey: #646464;
+
+// Mixins
+@mixin borderRadius{
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+@mixin linkAsButton {
+    background-color: $color-3;
+    padding: 0.2rem 1rem;
+    width: 100%;
+    @include borderRadius;
+    color: $color-1;
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+@mixin fontEmphasis{
+    font-family: $font;
+    letter-spacing: 2px;
+    text-shadow: 0 0 3px $black;
+}
+
+// Global
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+html{
+    background-color: $black;
+    color: $white;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+}
+
+h1{
+    position: absolute;
+    left: -999px;
+    @include fontEmphasis;
+}
+
+h2{
+    position: relative;
+    @include fontEmphasis;
+    &::before{
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 120%;
+        height: 8%;
+        content: " ";
+        background-color: $color-4;
+    }
+}
+
+h3{
+    position: relative;
+    @include fontEmphasis;
+    font-size: 22px;
+    &::before{
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 70%;
+        height: 8%;
+        content: " ";
+        background-color: $color-5;
+    }
+}
+
+a{
+    font-family: $font;
+    letter-spacing: 2px;
+}
