@@ -31,14 +31,14 @@ function Edition () {
                         <h3>Conditions d'inscription</h3>
                         <p>Être affilié Twitch</p>
                         <h3>Pour s'inscrire:</h3>
-                        <p>Envoyez un mail à jowystreaming@gmail.com dans lequel vous précisez:
+                        <p>Envoyez un <a href="mailto:jowystreaming@gmail.com" className="linkastext">mail</a> dans lequel vous précisez:</p>
                         <ul>
                             <li>Votre tag PUBG,</li>
                             <li>Votre tag Discord,</li>
                             <li>Le lien de votre chaîne Twitch!</li>
                             <li>Rejoignez ce Discord</li>
                         </ul>
-                        Une fois fait, le rôle "RTP" vous sera assigné sur Discord et vous aurez accès à des chans réservés aux joueurs pour faciliter l'organisation.</p>
+                        <p>Une fois fait, le rôle "RTP" vous sera assigné sur Discord et vous aurez accès à des chans réservés aux joueurs pour faciliter l'organisation.</p>
                     </div>
                 </aside>
             </div>

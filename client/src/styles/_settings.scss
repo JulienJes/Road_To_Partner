@@ -100,7 +100,7 @@ h3{
     }
 }
 
-a{
+a:not(.linkastext){
     font-family: $font;
     letter-spacing: 2px;
 }
