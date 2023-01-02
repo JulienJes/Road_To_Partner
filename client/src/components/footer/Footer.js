@@ -54,11 +54,12 @@ function Footer () {
     return (
         <footer>
             <div id='links'>
-                <a href="mailto:jowystreaming@gmail.com" title="Me contacter" target="_blank" rel="noopener noreferrer"><SvgMail /></a>
-                <a href="https://twitter.com/Jowy_TV" title="Twitter" target="_blank" rel="noopener noreferrer"><SvgTwitter /></a>
-                <a href="https://www.twitch.tv/jowytv" title="Twitch" target="_blank" rel="noopener noreferrer"><SvgTwitch /></a>
-                <a href="https://www.youtube.com/channel/UCWTyWYExJ1221Z_HcNBTnSw" title="Youtube" target="_blank" rel="noopener noreferrer"><SvgYoutube /></a>
+              <a href="mailto:jowystreaming@gmail.com" title="Me contacter" target="_blank" rel="noopener noreferrer"><SvgMail /></a>
+              <a href="https://twitter.com/Jowy_TV" title="Twitter" target="_blank" rel="noopener noreferrer"><SvgTwitter /></a>
+              <a href="https://www.twitch.tv/jowytv" title="Twitch" target="_blank" rel="noopener noreferrer"><SvgTwitch /></a>
+              <a href="https://www.youtube.com/channel/UCWTyWYExJ1221Z_HcNBTnSw" title="Youtube" target="_blank" rel="noopener noreferrer"><SvgYoutube /></a>
             </div>
+            <p>Réalisé par amour du Twitch francophone</p>
         </footer>
     );
 };

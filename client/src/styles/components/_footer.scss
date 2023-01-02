@@ -1,6 +1,8 @@
 footer{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     height : 10vh;
 }
 
@@ -8,7 +10,6 @@ footer{
     width: 50%;
     display: flex;
     justify-content: space-evenly;
-
     & a{
         margin: auto;
         transition: transform .25s cubic-bezier(.13,-.77,1,1.62);
