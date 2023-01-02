@@ -24,13 +24,13 @@ function Edition () {
                 <aside className="informations">
                     <div className="informations-date">
                         <h3>Dates</h3>
-                        <p>17 novembre 2022 à 20h00<br/>
-                        <strong className="inscriptions-over">Inscriptions terminées!</strong></p>
+                        <p>17 novembre 2022 à 20h00</p>
                     </div>
                     <div className="informations-inscription">
                         <h3>Conditions d'inscription</h3>
                         <p>Être affilié Twitch</p>
                         <h3>Pour s'inscrire:</h3>
+                        <strong className="inscriptions-over">Inscriptions terminées!</strong>
                         <p>Envoyez un <a href="mailto:jowystreaming@gmail.com" className="linkastext">mail</a> dans lequel vous précisez:</p>
                         <ul>
                             <li>Votre tag PUBG,</li>
