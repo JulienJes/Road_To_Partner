@@ -3,12 +3,13 @@ dotenv.config();
 const express = require('express');
 const mongoose = require('mongoose');
 
-const userRoutes = require('./routes/user.routes');
-const {checkUser, requireAuth} = require('./middleware/auth.middleware');
+//const userRoutes = require('./routes/user.routes');
+const editionRoutes = require('./routes/edition.routes');
+//const {checkUser, requireAuth} = require('./middleware/auth.middleware');
 
 const app = express();
 
-mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER_NAME}.w7tuj.mongodb.net/?retryWrites=true&w=majority`,
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER_NAME}.rttll75.mongodb.net/?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -27,12 +28,13 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // Jwt
-app.get('*', checkUser);
+/*app.get('*', checkUser);
 app.get('/jwtid', requireAuth, (req, res) => {
   res.status(200).send(res.locals.user._id)
-});
+});*/
 
 // Routes
-app.use('/api/user', userRoutes);
+//app.use('/api/user', userRoutes);
+app.use('/api/routes', editionRoutes);
 
 module.exports = app;
