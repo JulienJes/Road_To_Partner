@@ -5,7 +5,6 @@ exports.readEdition = (req, res, next) => {
         if(!error) {
             res.send(docs);
         } else {
-            console.log("erreur dans le readEdition")
             console.log('Error to get data :' + error);
         }
     }).sort({ createdAt: -1 });
