@@ -101,10 +101,12 @@ h3{
 }
 
 a:not(.linkastext){
-    font-family: $font;
-    letter-spacing: 2px;
+    font-weight: bold;
 }
 
 .linkastext{
     color: $color-3;
+    &:hover{
+        text-decoration: underline;
+    }
 }
