@@ -22,6 +22,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Parsers
+app.use(express.json());
+
 // Routes
 //app.use('/api/user', userRoutes);
 app.use('/api/edition', editionRoutes);

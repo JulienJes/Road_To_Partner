@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const editionSchema = mongoose.Schema({
     name: { type: String, required: true, unique: true , minlength: 4 },
-    presentation: { type: String, required: true, minlength: 100 },
+    presentation: { type: String, required: true, minlength: 10 },
     winner: { type: String, required: true, minlength: 3 },
     date: {type: Date, required: true, },
     inscription: {type: Date, required: true},
