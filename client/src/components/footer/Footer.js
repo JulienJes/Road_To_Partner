@@ -59,7 +59,6 @@ function Footer () {
               <a href="https://www.twitch.tv/jowytv" title="Twitch" target="_blank" rel="noopener noreferrer"><SvgTwitch /></a>
               <a href="https://www.youtube.com/channel/UCWTyWYExJ1221Z_HcNBTnSw" title="Youtube" target="_blank" rel="noopener noreferrer"><SvgYoutube /></a>
             </div>
-            <p>Réalisé par amour du Twitch francophone</p>
         </footer>
     );
 };

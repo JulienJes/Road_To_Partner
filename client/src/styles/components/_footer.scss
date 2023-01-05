@@ -3,7 +3,12 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height : 10vh;
+    background-color: $black;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: solid 1px;
+    border-color: $color-1;
+    margin-top: 1rem;
 }
 
 #links{
@@ -11,6 +16,7 @@ footer{
     display: flex;
     justify-content: space-evenly;
     & a{
+        display: flex;
         margin: auto;
         transition: transform .25s cubic-bezier(.13,-.77,1,1.62);
         &:hover{
