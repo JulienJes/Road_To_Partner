@@ -16,7 +16,8 @@ $color-4: #BC3C47 ;
 $color-5: #315FB6;
 $black: #0E0E10;
 $white: #FDFDFD;
-$grey: #646464;
+$grey: #353535;
+$bg-title: #0e0e10c2;
 
 // Mixins
 @mixin borderRadius{
@@ -97,6 +98,7 @@ h1{
 h2{
     position: relative;
     @include fontEmphasis;
+    background-color: $bg-title;
     &::before{
         position: absolute;
         left: 0px;
@@ -128,7 +130,7 @@ a:not(.linkastext){
 }
 
 .linkastext{
-    color: $color-3;
+    color: $color-1;
     &:hover{
         text-decoration: underline;
     }
