@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 function Editions () {
     return (
         <>
-        <section id="editions">
+        <section className="editions">
             <div className="list">
                 <div className="card">
                     <div className="card-title">

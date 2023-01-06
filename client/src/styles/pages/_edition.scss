@@ -1,4 +1,4 @@
-.arranged{
+.edition{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,12 +31,4 @@
 
 .inscriptions-over{
     color: $color-1;
-}
-
-.list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-around;
-    min-height: 70vh;
 }

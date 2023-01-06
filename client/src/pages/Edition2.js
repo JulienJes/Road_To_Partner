@@ -3,9 +3,9 @@ import {NavLink} from "react-router-dom";
 function Edition2 () {
     return (
         <>
-        <div className="arranged">
+        <div className="edition">
             <h2>RTP#2 - Fall Guys</h2>
-            <div className="arranged-sub">
+            <div className="edition-sub">
                 <section className="presentation">
                     <h3>Présentation</h3>
                     <p>Jusqu'à 60 streameurs vont s'affronter sur Fall Guys, tous affiliés.<br/>

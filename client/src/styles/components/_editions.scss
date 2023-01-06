@@ -1,5 +1,11 @@
 .editions{
-    width: 60%;
+    display: flex;
+    justify-content: center;
     margin: 0 0 1rem 0;
 }
 
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

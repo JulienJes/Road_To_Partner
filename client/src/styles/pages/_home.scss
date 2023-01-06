@@ -1,14 +1,13 @@
-.catchphrase{
-    width: 95%;
-    margin: 1rem 0;
-    background-color: $color-3;
-    @include borderRadius;
-}
-
 .home{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: justify;
-    flex-basis: 50%;
+}
+
+.catchphrase{
+    width: 50%;
+    margin: 1rem 0;
+    background-color: $color-3;
+    @include borderRadius;
 }

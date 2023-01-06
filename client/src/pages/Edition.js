@@ -3,9 +3,9 @@ import {NavLink} from "react-router-dom";
 function Edition () {
     return (
         <>
-        <div className="arranged">
+        <div className="edition">
             <h2>RTP#1 - PUBG</h2>
-            <div className="arranged-sub">
+            <div className="edition-sub">
                 <section className="presentation">
                     <h3>Présentation</h3>
                     <p>La première édition de PUBG a regroupé une dizaine de streameur, tous affiliés<br/>
