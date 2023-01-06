@@ -18,8 +18,6 @@ function Edition () {
                     Les participants doivent s'abonner (ou offrir un abonnement) et raid le gagnant!<br/>
                     Chat en emote only à chaque lancement de partie<br/>
                     Version PC du jeu (pas cross-consoles)</p>
-                    <h3>Gagnant</h3>
-                    <p>Cornixx</p>
                 </section>
                 <aside className="informations">
                     <div className="informations-date">

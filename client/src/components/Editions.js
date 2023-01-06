@@ -26,7 +26,7 @@ function Editions () {
                         <p>Fin des inscriptions le 25 janvier inclus</p>
                     </div>
                     <div className="card-btn">
-                        <NavLink exact="true" to="/rtp1" className="btn">Consulter</NavLink>
+                        <NavLink exact="true" to="/rtp2" className="btn">Consulter</NavLink>
                     </div>
                 </div>
             </div>
