@@ -4,10 +4,12 @@
     src: url(./assets/fonts/moon_get-Heavy.ttf);
     font-display: swap;
 }
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 
 // Variables
-$font: "font-1", sans-serif;
+$font-title: "font-1", sans-serif;
+$font-txt : 'Roboto', sans-serif;
 
 $color-1: #ECBA63;
 $color-2: #7A2125 ;
@@ -37,8 +39,8 @@ $bg-title: #0e0e10c2;
     cursor: pointer;
 }
 
-@mixin fontEmphasis{
-    font-family: $font;
+@mixin fontTitle{
+    font-family: $font-title;
     letter-spacing: 2px;
     text-shadow: 0 0 3px $black;
 }
@@ -52,6 +54,7 @@ $bg-title: #0e0e10c2;
     outline: none;
     border: none;
     text-decoration: none;
+    font-family: $font-txt;
 }
 
 html{
@@ -91,12 +94,12 @@ main{
 h1{
     position: absolute;
     left: -999px;
-    @include fontEmphasis;
+    @include fontTitle;
 }
 
 h2{
     position: relative;
-    @include fontEmphasis;
+    @include fontTitle;
     background-color: $bg-title;
     &::before{
         position: absolute;
@@ -111,7 +114,7 @@ h2{
 
 h3{
     position: relative;
-    @include fontEmphasis;
+    @include fontTitle;
     font-size: 22px;
     &::before{
         position: absolute;
