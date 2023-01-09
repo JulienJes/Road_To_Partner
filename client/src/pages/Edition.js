@@ -8,7 +8,7 @@ function Edition () {
             <div className="edition-sub">
                 <section className="presentation">
                     <h3>Présentation</h3>
-                    <p>La première édition de PUBG a regroupé une dizaine de streameur, tous affiliés<br/>
+                    <p>La première édition de PUBG a regroupé une dizaine de streameurs, tous affiliés<br/>
                     4 parties sur 4 maps différentes (Erangel, Vikendi, Karakhin, Sanhok)<br/>
                     L'apparition des zones était un peu accélérée en début de partie (jusqu'à phase 5 exclue)<br/>
                     Mode FPP<br/>
