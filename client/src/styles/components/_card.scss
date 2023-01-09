@@ -1,11 +1,13 @@
 .card{
     background-color: $grey;
     @include borderRadius;
-    width: 20rem;
+    width: 22rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 1rem;
+    &:first-child{
+        margin-right: 1rem;
+    }
     &-dates{
         padding: 1rem 0;
     }
