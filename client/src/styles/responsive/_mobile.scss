@@ -1,0 +1,42 @@
+@media screen and (max-width:767px) {
+    
+    #root{
+        &::after{
+            top: 32px;
+            left: 0;
+            background-position: center center;
+        }
+    }
+
+    main{
+        height: 79vh;
+    }
+    
+    .home{
+        padding: 1rem 0;
+    }
+
+    .catchphrase{
+        width: 100%;
+        border-radius: unset;
+    }
+
+    .list{
+        flex-direction: column;
+    }
+
+    .card{
+        &:first-child{
+            margin: 0 0 1rem 0;
+        }
+    }
+
+    .edition-sub{
+        flex-direction: column;
+    }
+
+    .presentation, .informations{
+        border: unset;
+        width: 100%;
+    }
+}

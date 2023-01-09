@@ -1,0 +1,18 @@
+@media screen and (max-width:991px) {
+    .catchphrase{
+        width: 50%;
+    }
+
+    .edition-sub{
+        width: 100%;
+    }
+
+    .presentation, .informations{
+        width: 50%;
+        border-radius: unset;
+    }
+
+    .presentation{
+        border-right: 1px solid black;
+    }
+}
