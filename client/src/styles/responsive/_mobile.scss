@@ -5,11 +5,16 @@
             top: 32px;
             left: 0;
             background-position: center center;
+            height: 150%;
         }
     }
 
+    .logo-container{
+        margin: 2rem 0;
+    }
+
     main{
-        height: 79vh;
+        height: 116vh;
     }
     
     .home{
@@ -23,9 +28,11 @@
 
     .list{
         flex-direction: column;
+        width: 100%;
     }
 
     .card{
+        width: 100%;
         &:first-child{
             margin: 0 0 1rem 0;
         }
