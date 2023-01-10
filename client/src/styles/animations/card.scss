@@ -1,0 +1,20 @@
+$num-cards: 10;
+
+.fadein{
+	@for $i from 1 through $num-cards{
+		&--#{$i}{
+			animation: fadein 800ms 200ms*$i ease-in-out both;
+		}
+	}
+}
+
+@keyframes fadein{
+	0%{
+	opacity: 0;
+	transform: translateY(20px);
+	}
+  100%{
+	opacity: 1;
+	transform: translateY(0);
+	}
+}
