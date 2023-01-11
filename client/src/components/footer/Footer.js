@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
 
 // SVG to react components in order to modify them
 const SvgMail = (props) => (
