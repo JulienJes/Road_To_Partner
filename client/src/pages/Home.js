@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+//import { NavLink } from "react-router-dom";
 import Editions from "../components/Editions";
 
 function Home () {

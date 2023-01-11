@@ -1,10 +1,5 @@
 import { NavLink } from "react-router-dom";
 
-const CLIENT_ID = "wm098h6cmkbfm39crvq364ehioenqu";
-const REDIRECT_URI = "http://localhost:3000";
-const RESPONSE_TYPE = "token";
-const SCOPES = "";
-
 const SvgTwitch = (props) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
