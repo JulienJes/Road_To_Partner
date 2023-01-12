@@ -13,7 +13,8 @@ function Edition2 () {
                     Vous gagnez 1 point à chaque manche passée sauf pour la phase finale qui vous octroie 2 points. Gagner la partie rapporte 3 points.<br/>
                     Le cumule des points de chaque partie établie un score total et donc le classement de l'édition.<br/>
                     Les participants doivent s'abonner (ou offrir un abonnement) et raid le gagnant!<br/>
-                    Il est obligatoire de streamer les parties<br/>
+                    Votre jeu sera legit, pas de cheat ingame.<br/>
+                    Il est obligatoire de streamer les parties.<br/>
                     Le jeu est cross-play et gratuit!</p>
                 </section>
                 <aside className="informations">
