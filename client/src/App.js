@@ -2,13 +2,13 @@ import Index from './components/routes';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 
-fetch("http://localhost:5000/api/edition/")
-  .then((res) => {
-    return res.json()
-  })
-  .then((result) => {
-    console.log(result)
-  })
+// fetch("http://localhost:5000/api/edition/")
+//   .then((res) => {
+//     return res.json()
+//   })
+//   .then((result) => {
+//     console.log(result)
+//   })
 
 function App() {
   return (
@@ -23,5 +23,5 @@ function App() {
     </>
   );
 };
-//test
+
 export default App;
