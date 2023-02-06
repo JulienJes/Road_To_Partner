@@ -10,6 +10,8 @@ import Footer from './components/footer/Footer';
 //     console.log(result)
 //   })
 
+
+
 function App() {
   return (
     <>
