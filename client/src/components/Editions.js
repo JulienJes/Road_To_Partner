@@ -11,7 +11,7 @@ function Editions () {
                     </div>
                     <div className="card-dates">
                         <p>Vendredi 27 janvier 2023 à 20h00</p>
-                        <p>Fin des inscriptions le 25 janvier inclus</p>
+                        <p className="inscriptions-over">Évènement terminé</p>
                     </div>
                     <div className="card-btn">
                         <NavLink exact="true" to="/rtp2" className="btn">Consulter</NavLink>

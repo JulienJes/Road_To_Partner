@@ -27,6 +27,7 @@ function Edition2 () {
                         <h3>Conditions d'inscription</h3>
                         <p>Être affilié Twitch</p>
                         <h3>Pour s'inscrire:</h3>
+                        <strong className="inscriptions-over">Inscriptions terminées!</strong>
                         <p>Rejoignez ce <a href="https://discord.gg/f9mQ5t9Suv" title="Discord" target="_blank" rel="noopener noreferrer" className="linkastext">Discord</a> et laissez-vous guider!</p>
                         <p>Une fois votre candidature acceptée, le rôle "Streamer" vous sera assigné sur Discord et vous aurez accès à des chans réservés aux joueurs pour faciliter l'organisation.</p>
                         <p>Votre communauté peut rejoindre le Discord et participer à la vie de la compétition!</p>
