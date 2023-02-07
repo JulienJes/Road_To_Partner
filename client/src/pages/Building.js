@@ -11,7 +11,7 @@ function Building () {
                     <li>MongoDB</li>
                 </ul>
                 <a href="mailto:jowystreaming@gmail.com" title="Me contacter" target="_blank" rel="noopener noreferrer" className="linkastext">
-                    écrit-moi !
+                    écris-moi !
                 </a>
             </section>
         </>
