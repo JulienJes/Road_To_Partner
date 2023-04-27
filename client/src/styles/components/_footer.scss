@@ -8,10 +8,8 @@ footer{
     padding-bottom: 1rem;
     border-top: solid 1px;
     border-color: $color-1;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
+    height: $footer-height;
 }
 
 #links{

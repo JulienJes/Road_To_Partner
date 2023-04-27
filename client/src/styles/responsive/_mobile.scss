@@ -1,10 +1,12 @@
 @media screen and (max-width:767px) {
-    
     #root{
+        position: relative;
         &::after{
-            top: 32px;
+            position: absolute;
+            top: 0;
             left: 0;
-            height: 175%;
+            right: 0;
+            bottom: 0;
             background-attachment: fixed;
             background-image: url('../../../public/img/background/background-mob.webp');
         }
@@ -12,10 +14,6 @@
 
     .logo-container{
         margin: 2rem 0;
-    }
-
-    main{
-        height: 116vh;
     }
     
     .home{

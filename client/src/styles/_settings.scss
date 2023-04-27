@@ -20,6 +20,8 @@ $black: #0E0E10;
 $white: #FDFDFD;
 $grey: #353535;
 $bg-title: #0e0e10c2;
+$header-height: 14rem;
+$footer-height: 5rem;
 
 // Mixins
 @mixin borderRadius{
@@ -58,12 +60,14 @@ $bg-title: #0e0e10c2;
 }
 
 html{
+    height: 100svh;
     color: $white;
     line-height: 1.8;
     font-size: 16px;
 }
 
 #root{
+    position: relative;
     &::after{
         content: '';
         display: block;
@@ -81,10 +85,12 @@ html{
     }
 }
 
-.container{
+.main-container{
     display: flex;
     flex-direction: column;
-    margin-bottom: 65px;
+    min-height: calc(100vh - (#{$header-height} + #{$footer-height}));
+    width: 100%;
+    position: relative;
 }
 
 h1{
