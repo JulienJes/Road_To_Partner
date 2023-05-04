@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "./AuthContext";
 
 const clientId = process.env.REACT_APP_TWITCH_ID
 const clientSecret = process.env.REACT_APP_TWITCH_SECRET
 const redirectUri = process.env.REACT_APP_TWITCH_URL
 
 const TwitchCallback = () => {
-    const history = useNavigate();
+    const { setAccessToken } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAccessToken = async (code) => {
@@ -15,8 +17,8 @@ const TwitchCallback = () => {
             try {
                 const response = await axios.post(tokenUrl);
                 const accessToken = response.data.access_token;
-                // Stocke le jeton d'accès dans un endroit sûr (par exemple, dans un état global ou dans un cookie)
-                history.push("/"); // Redirige vers la page d'accueil
+                setAccessToken(accessToken); // Stocke le jeton d'accès dans le contexte d'authentification
+                navigate("/"); // Redirige vers la page d'accueil
             } catch (error) {
                 console.error("Erreur lors de la récupération du jeton d'accès", error);
             }
@@ -27,7 +29,7 @@ const TwitchCallback = () => {
         if (code) {
             fetchAccessToken(code);
         }
-    }, [history]);
+    }, [navigate, setAccessToken]);
 
     return <div>Chargement...</div>;
 };
