@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
+  const [userData, setUserData] = useState(null);
   
   useEffect(() => {
     const token = Cookies.get("accessToken");
@@ -14,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ accessToken, setAccessToken }}>
+    <AuthContext.Provider value={{ accessToken, setAccessToken, userData, setUserData }}>
       {children}
     </AuthContext.Provider>
   );
