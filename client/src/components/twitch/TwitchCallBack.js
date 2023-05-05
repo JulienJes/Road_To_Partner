@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "./AuthContext";
+import Cookies from "js-cookie";
 
 const clientId = process.env.REACT_APP_TWITCH_ID
 const clientSecret = process.env.REACT_APP_TWITCH_SECRET
@@ -17,6 +18,7 @@ const TwitchCallback = () => {
             try {
                 const response = await axios.post(tokenUrl);
                 const accessToken = response.data.access_token;
+                Cookies.set("accessToken", accessToken, /*{ secure: true }*/); // Stocke le jeton d'accès dans un cookie sécurisé
                 setAccessToken(accessToken); // Stocke le jeton d'accès dans le contexte d'authentification
                 navigate("/"); // Redirige vers la page d'accueil
             } catch (error) {
