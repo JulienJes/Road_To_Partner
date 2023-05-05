@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import AuthContext from '../twitch/AuthContext';
+
 const SvgTwitch = (props) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,11 +21,22 @@ const scope = encodeURIComponent("user:read:email");
 
 const authUrl = `https://id.twitch.tv/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
 
+function deleteCookie(name) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
 function TwitchLogin() {
-  console.log(process.env)
+  const { accessToken, setAccessToken } = useContext(AuthContext);
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    deleteCookie("accessToken");
+    setAccessToken(null);
+  };
+
     return (
         <>
-            <a href={authUrl}>Connexion avec Twitch <SvgTwitch /></a>
+            {accessToken ? (<a href="#" onClick={handleLogout}>Déconnexion <SvgTwitch /></a>) : (<a href={authUrl}>Connexion avec Twitch <SvgTwitch /></a>)}
         </>
     );
 }

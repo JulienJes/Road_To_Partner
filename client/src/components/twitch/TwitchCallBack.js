@@ -21,6 +21,7 @@ const TwitchCallback = () => {
                 Cookies.set("accessToken", accessToken, /*{ secure: true }*/); // Stocke le jeton d'accès dans un cookie sécurisé
                 setAccessToken(accessToken); // Stocke le jeton d'accès dans le contexte d'authentification
                 navigate("/"); // Redirige vers la page d'accueil
+                console.log(response)
             } catch (error) {
                 console.error("Erreur lors de la récupération du jeton d'accès", error);
             }

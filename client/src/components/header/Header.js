@@ -1,16 +1,9 @@
-import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import TwitchLogin from '../twitch/TwitchLogin';
-import AuthContext from '../twitch/AuthContext';
 
 function Header () {
-    const { accessToken } = useContext(AuthContext);
-
     return (
         <header>
-            <div>
-                {accessToken ? <p>Salut!</p> : null}
-            </div>
             <div className="navigation">
                 <TwitchLogin />
             </div>
