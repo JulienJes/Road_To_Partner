@@ -12,7 +12,7 @@ exports.readEditions = (req, res, next) => {
 }
 
 exports.readEdition = (req, res, next) => {
-    const { id } = req.body
+    const { id } = req.params
     if (!ObjectID.isValid(id)) {
         return res.status(400).json('ID Unknown : ' + id);
     }
@@ -44,4 +44,46 @@ exports.createEdition = async (req, res, next) => {
     catch (error) {
         return res.status(400).send(error);
     }
+}
+
+exports.updateEdition = (req, res, next) => {
+    const { id } = req.params
+    if (!ObjectID.isValid(id)) {
+        return res.status(400).json('ID Unknown : ' + id);
+    }
+    const updateRecord = {
+        name: req.body.name,
+        presentation: req.body.presentation,
+        winner: req.body.winner,
+        date: req.body.date,
+        inscription: req.body.inscription,
+        condition: req.body.condition,
+        process: req.body.process,
+    }
+    EditionModel.findByIdAndUpdate(
+        id,
+        { $set: updateRecord },
+        { new: true },
+        (error, docs) => {
+            if (!error) {
+                res.send(docs);
+            } else {
+                console.log('ID unkown : ' + error)
+            }
+        }
+    )
+}
+
+exports.deleteEdition = (req, res, next) => {
+    const { id } = req.params
+    if (!ObjectID.isValid(id)) {
+        return res.status(400).json('ID Unknown : ' + id);
+    }
+    EditionModel.findByIdAndRemove(id, (error, docs) => {
+        if (!error) {
+            res.send(docs);
+        } else {
+            console.log('ID unkown : ' + error)
+        }
+    }).select();
 }
