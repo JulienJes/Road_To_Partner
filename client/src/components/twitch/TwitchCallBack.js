@@ -7,17 +7,22 @@ import Cookies from "js-cookie";
 const clientId = process.env.REACT_APP_TWITCH_ID;
 const clientSecret = process.env.REACT_APP_TWITCH_SECRET;
 const redirectUri = process.env.REACT_APP_TWITCH_URL;
+const baseUrl = process.env.REACT_APP_API_URL;
 
 const TwitchCallback = () => {
-  const { setAccessToken, setUserData } = useContext(AuthContext);
+  const { setJwt, setUserData } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     const createUserInDatabase = async (accessToken) => {
       try {
         const response = await axios.get(
-          `/api/user/auth/twitch/callback?access_token=${accessToken}`
+          `${baseUrl}/api/user/auth/twitch/callback?access_token=${accessToken}`
         );
+        const jwt = response.data.jwt;
+        console.log(jwt);
+        Cookies.set("token", jwt);
+        setJwt(jwt);
         console.log("User created in database", response.data);
       } catch (error) {
         console.error(
@@ -40,7 +45,6 @@ const TwitchCallback = () => {
         console.error("Erreur lors de la récupération du jeton d'accès", error);
       }
     };
-    
 
     const fetchUserData = async (accessToken) => {
       try {
@@ -65,7 +69,7 @@ const TwitchCallback = () => {
     if (code) {
       fetchAccessToken(code);
     }
-  }, [navigate, setAccessToken, setUserData]);
+  }, [navigate, setJwt, setUserData]);
 
   return <div>Chargement...</div>;
 };

@@ -100,6 +100,8 @@ exports.twitchCallback = async (req, res) => {
             httpOnly: true,
         });
 
+        res.status(200).json({ jwt: token });
+
         // Rediriger vers la page d'accueil de l'application front-end
         res.redirect(`http://localhost:${process.env.PORT_FRONT}`);
 

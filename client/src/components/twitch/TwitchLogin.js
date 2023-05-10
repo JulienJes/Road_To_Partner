@@ -26,17 +26,17 @@ function deleteCookie(name) {
 }
 
 function TwitchLogin() {
-  const { accessToken, setAccessToken } = useContext(AuthContext);
+  const { jwt, setJwt } = useContext(AuthContext);
 
   const handleLogout = (event) => {
     event.preventDefault();
-    deleteCookie("accessToken");
-    setAccessToken(null);
+    deleteCookie("token");
+    setJwt(null);
   };
 
     return (
         <>
-            {accessToken ? (<a href="#" onClick={handleLogout}>Déconnexion <SvgTwitch /></a>) : (<a href={authUrl}>Connexion avec Twitch <SvgTwitch /></a>)}
+            {jwt ? (<a href="#" onClick={handleLogout}>Déconnexion <SvgTwitch /></a>) : (<a href={authUrl}>Connexion avec Twitch <SvgTwitch /></a>)}
         </>
     );
 }

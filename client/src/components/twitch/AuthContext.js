@@ -1,21 +1,18 @@
-import { createContext, useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import { createContext, useState } from "react";
 
-const AuthContext = createContext();
+const AuthContext = createContext({
+  userData: null,
+  setUserData: () => {},
+  jwt: null,
+  setJwt: () => {},
+});
 
 export const AuthProvider = ({ children }) => {
-  const [accessToken, setAccessToken] = useState(null);
   const [userData, setUserData] = useState(null);
-  
-  useEffect(() => {
-    const token = Cookies.get("accessToken");
-    if (token) {
-      setAccessToken(token);
-    }
-  }, []);
+  const [jwt, setJwt] = useState(null);
 
   return (
-    <AuthContext.Provider value={{ accessToken, setAccessToken, userData, setUserData }}>
+    <AuthContext.Provider value={{ userData, setUserData, jwt, setJwt }}>
       {children}
     </AuthContext.Provider>
   );

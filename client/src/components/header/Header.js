@@ -4,13 +4,13 @@ import TwitchLogin from '../twitch/TwitchLogin';
 import AuthContext from "../twitch/AuthContext";
 
 function Header () {
-    const { accessToken, userData } = useContext(AuthContext);
+    const { jwt, userData } = useContext(AuthContext);
 
     return (
         <header>
             <div className="navigation">
                 <div className="navigation-greetings">
-                    {accessToken && userData ? <strong>Hello {userData.display_name} !</strong> : null}
+                    {jwt && userData ? <strong>Hello {userData.display_name} !</strong> : null}
                 </div>
                 <div className="navigation-login">
                     <TwitchLogin />
