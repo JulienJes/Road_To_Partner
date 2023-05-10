@@ -1,6 +1,7 @@
 const UserModel = require('../models/user');
 const ObjectID = require('mongoose').Types.ObjectId; // pour vérifier que le paramêtre existe déjà dans la BDD
 const axios = require('axios');
+const jwt = require("jsonwebtoken");
 
 exports.getAllUsers = async (req, res) => {
     const users = await UserModel.find();
@@ -44,7 +45,7 @@ exports.updateUser = (req, res, next) => {
     }
 }
 
-exports.deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res, next) => {
     if (!ObjectID.isValid(req.params.id)) {
         return res.status(400).json('ID Unknown : ' + req.params.id);
     }
@@ -90,9 +91,17 @@ exports.twitchCallback = async (req, res) => {
             await user.save();
         }
 
-        // - Créer et envoyez un JWT
-        // - Créer et envoyez un cookie avec le JWT
-        // - Rediriger vers la page d'accueil de l'application front-end
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+
+        // Créer et envoyez un cookie avec le JWT
+        res.cookie("token", token, {
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 1 day
+            secure: false, // set to true if your using https
+            httpOnly: true,
+        });
+
+        // Rediriger vers la page d'accueil de l'application front-end
+        res.redirect(`http://localhost:${process.env.PORT_FRONT}`);
 
     } catch (error) {
         console.error("Erreur lors de l'authentification Twitch", error);
