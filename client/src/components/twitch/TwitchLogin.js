@@ -26,12 +26,13 @@ function deleteCookie(name) {
 }
 
 function TwitchLogin() {
-  const { jwt, setJwt } = useContext(AuthContext);
+  const { jwt, setJwt, setUserData } = useContext(AuthContext);
 
   const handleLogout = (event) => {
     event.preventDefault();
-    deleteCookie("token");
     setJwt(null);
+    setUserData(null);
+    deleteCookie("token");
   };
 
     return (

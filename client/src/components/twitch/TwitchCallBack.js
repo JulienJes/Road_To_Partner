@@ -14,15 +14,20 @@ const TwitchCallback = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const jwt = Cookies.get("token");
+    console.log("Cookie JWT:", jwt);
+    if (jwt) {
+      setJwt(jwt);
+    }
+  }, []);
+
+  useEffect(() => {
     const createUserInDatabase = async (accessToken) => {
       try {
         const response = await axios.get(
-          `${baseUrl}/api/user/auth/twitch/callback?access_token=${accessToken}`
+          `${baseUrl}/api/user/auth/twitch/callback?access_token=${accessToken}`,
+          { withCredentials: true }
         );
-        const jwt = response.data.jwt;
-        console.log(jwt);
-        Cookies.set("token", jwt);
-        setJwt(jwt);
         console.log("User created in database", response.data);
       } catch (error) {
         console.error(
@@ -40,7 +45,7 @@ const TwitchCallback = () => {
         const userData = await fetchUserData(accessToken);
         setUserData(userData);
         await createUserInDatabase(accessToken);
-        navigate("/"); // Redirige vers la page d'accueil
+        navigate("/");
       } catch (error) {
         console.error("Erreur lors de la récupération du jeton d'accès", error);
       }

@@ -1,7 +1,10 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require('express');
+const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
+
+const corsMiddleware = require('./middleware/cors');
 
 const editionRoutes = require('./routes/edition.routes');
 const userRoutes = require('./routes/user.routes')
@@ -15,16 +18,11 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGOD
   .catch(() => console.log('Connexion à MongoDB échouée !'))
 ;
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', `http://localhost:${process.env.PORT_FRONT}`);
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
+app.use(corsMiddleware);
 
 // Parsers
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 app.use('/api/user', userRoutes);
