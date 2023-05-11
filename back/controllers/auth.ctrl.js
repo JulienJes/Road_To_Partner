@@ -1,6 +1,7 @@
 const UserModel = require('../models/user');
 const axios = require('axios');
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 exports.twitchCallback = async (req, res) => {
     try {
