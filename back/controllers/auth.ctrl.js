@@ -1,7 +1,6 @@
 const UserModel = require('../models/user');
 const axios = require('axios');
 const jwt = require("jsonwebtoken");
-const bcrypt = require('bcrypt');
 
 exports.twitchCallback = async (req, res) => {
     try {
@@ -50,9 +49,7 @@ exports.twitchCallback = async (req, res) => {
         console.log("JWT cookie set:", token)
 
         // Rediriger vers la page d'accueil de l'application front-end
-        setTimeout(() => {
-            res.redirect(`http://localhost:${process.env.PORT_FRONT}`);
-          }, 1000);
+        res.redirect(`http://localhost:${process.env.PORT_FRONT}`);
 
     } catch (error) {
         console.error("Erreur lors de l'authentification Twitch", error);

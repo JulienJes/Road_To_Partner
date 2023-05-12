@@ -14,12 +14,13 @@ const TwitchCallback = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const jwt = Cookies.get("token");
-    console.log("Cookie JWT:", jwt);
-    if (jwt) {
-      setJwt(jwt);
-    }
-  }, []);
+    setTimeout(() => {
+      const jwt = Cookies.get("token");
+      if (jwt) {
+        setJwt(jwt);
+      }
+    }, 1000);
+  }, [setJwt]);
 
   useEffect(() => {
     const createUserInDatabase = async (accessToken) => {
