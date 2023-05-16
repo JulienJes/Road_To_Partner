@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import axios from "axios";
 import AuthContext from '../twitch/AuthContext';
 
 const SvgTwitch = (props) => (
@@ -16,23 +17,25 @@ const SvgTwitch = (props) => (
 
 const clientId = process.env.REACT_APP_TWITCH_ID
 const redirectUri = encodeURIComponent(process.env.REACT_APP_TWITCH_URL)
+const baseUrl = process.env.REACT_APP_API_URL
 const responseType = "code";
 const scope = encodeURIComponent("user:read:email");
 
 const authUrl = `https://id.twitch.tv/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
 
-function deleteCookie(name) {
-  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-}
 
 function TwitchLogin() {
   const { jwt, setJwt, setUserData } = useContext(AuthContext);
 
-  const handleLogout = (event) => {
+  const handleLogout = async(event) => {
     event.preventDefault();
-    setJwt(null);
-    setUserData(null);
-    deleteCookie("token");
+    try {
+      await axios.post(`${baseUrl}/api/user/auth/logout`);
+      setJwt(null);
+      setUserData(null);
+    } catch (error) {
+      console.error('Erreur lors de la déconnexion', error);
+    }
   };
 
     return (

@@ -5,7 +5,9 @@ const authCtrl = require('../controllers/auth.ctrl')
 const userCtrl = require('../controllers/user.ctrl');
 
 // Authentification Twitch
-router.get('/auth/twitch/callback', authCtrl.twitchCallback)
+router.get('/auth/twitch/callback', authCtrl.twitchCallback);
+router.post('/auth/refresh_token', authCtrl.refreshToken);
+router.post('/auth/logout', authCtrl.logOut);
 
 // User DB
 router.get('/', userCtrl.getAllUsers);

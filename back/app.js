@@ -18,6 +18,14 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGOD
   .catch(() => console.log('Connexion à MongoDB échouée !'))
 ;
 
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', `http://localhost:${process.env.PORT_FRONT}`); 
+//   res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   next();
+// });
+
 app.use(corsMiddleware);
 
 // Parsers

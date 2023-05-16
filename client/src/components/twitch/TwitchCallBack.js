@@ -10,24 +10,30 @@ const redirectUri = process.env.REACT_APP_TWITCH_URL;
 const baseUrl = process.env.REACT_APP_API_URL;
 
 const TwitchCallback = () => {
-  const { setJwt, setUserData } = useContext(AuthContext);
+  const { setJwt, setUserData, refreshAccessToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
+    setTimeout(async () => {
       const jwt = Cookies.get("token");
       if (jwt) {
         setJwt(jwt);
+      } else {
+        const newJwt = await refreshAccessToken();
+        if (newJwt) {
+          setJwt(newJwt);
+        }
       }
     }, 1000);
-  }, [setJwt]);
+  }, [setJwt, refreshAccessToken]);
+  
 
   useEffect(() => {
     const createUserInDatabase = async (accessToken) => {
       try {
         const response = await axios.get(
-          `${baseUrl}/api/user/auth/twitch/callback?access_token=${accessToken}`,
-          { withCredentials: true }
+          `${baseUrl}/api/user/auth/twitch/callback?access_token=${accessToken}`
+        , { withCredentials: true }
         );
         console.log("User created in database", response.data);
       } catch (error) {
@@ -59,7 +65,8 @@ const TwitchCallback = () => {
             "Client-ID": clientId,
             "Authorization": `Bearer ${accessToken}`,
           },
-        });
+        },
+        { withCredentials: true });
         const userData = response.data.data[0];
         return userData;
       } catch (error) {
