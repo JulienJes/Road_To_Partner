@@ -1,0 +1,31 @@
+.participants{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.streamer{
+    display: block;
+    flex-direction: column;
+    box-sizing: content-box;
+    position: relative;
+    width: 30%;
+    margin: 0 1rem 1rem 0;
+    &::before{
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #0e0e10c2;
+        z-index: -1;
+    }
+    & a {
+        display:block;
+        color: unset;
+        font-weight: normal;
+        img {
+        width: 10rem;
+        }
+    }
+}

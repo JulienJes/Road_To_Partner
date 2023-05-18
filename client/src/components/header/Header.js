@@ -12,6 +12,9 @@ function Header () {
                 <div className="navigation-greetings">
                     {jwt && userData ? <strong>Hello {userData.display_name} !</strong> : null}
                 </div>
+                <div className="navigation-options">
+                    <NavLink exact="true" to="/participants">Participants</NavLink>
+                </div>
                 <div className="navigation-login">
                     <TwitchLogin />
                 </div>
