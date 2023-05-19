@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const clientId = process.env.REACT_APP_TWITCH_ID;
@@ -19,7 +19,7 @@ const Participants = () => {
 
       const users = ['Pyyyyf', 'Kiwikrykry_', 'LeLudus', 'YGDRAL', 'Coli28', 'horusroyale29', 'Chilosah', 'Keeburu', 'Maytiak', 'Manubiwan', 'CornniX', 'zepoipoi', 'Mawy_P', 'Meobryn', 'RLP_TV', 'ASX_BH', 'LoicTomatot', 'DrGameuse', 'Sovannya', 'Bad_Hel', 'BonbonBleue', 'Jaster__Blade', 'Snakenco', 'HelloMariane']
 
-      const usersData = [];
+      const allUsersData = [];
       for (let i = 0; i < users.length; i++) {
         const user = users[i];
         const { data: userData } = await axios.get('https://api.twitch.tv/helix/users', {
@@ -32,10 +32,42 @@ const Participants = () => {
           }
         });
 
-        usersData.push(...userData.data);
+        if (!userData.data || !userData.data.length) {
+          console.log(`User ${user} does not exist`);
+          continue;
+        }
+
+        const userId = userData.data[0].id;
+
+        const { data: followersData } = await axios.get(`https://api.twitch.tv/helix/users/follows?to_id=${userId}`, {
+          headers: {
+            'Client-ID': clientId,
+            'Authorization': `Bearer ${tokenData.access_token}`
+          }
+        });
+        const followersCount = followersData.total;
+
+        const { data: streamsData } = await axios.get(`https://api.twitch.tv/helix/streams?user_id=${userId}`, {
+          headers: {
+            'Client-ID': clientId,
+            'Authorization': `Bearer ${tokenData.access_token}`
+          }
+        });
+        const isLive = streamsData.data.length > 0;
+        const lastGameStreamed = isLive ? streamsData.data[0].game_name : '';
+
+        const fullUsersData = {
+          ...userData.data[0],
+          followers: followersCount,
+          isLive,
+          lastGameStreamed
+        };
+
+        allUsersData.push(fullUsersData);
       }
 
-      setUsersData(usersData);
+      console.log(allUsersData);
+      setUsersData(allUsersData);
     };
 
     fetchData();
@@ -54,7 +86,11 @@ const Participants = () => {
             <a href={`https://www.twitch.tv/${user.login}`} target="_blank" rel="noopener noreferrer">
               <h3>{user.display_name}</h3>
               <img src={user.profile_image_url} alt={user.display_name} />
-              <p>{user.description}</p>
+              <p>{user.description ? user.description : "Ce streamer n'a pas de bio."}</p>
+              <p>Followers: {user.followers}</p>
+              <p>Views: {user.view_count}</p>
+              <p>Last game streamed: {user.lastGameStreamed}</p>
+              <span>Live now: {user.isLive ? 'Yes' : 'No'}</span>
             </a>
           </div>
         ))}
