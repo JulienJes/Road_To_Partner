@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { HiUsers } from 'react-icons/hi';
 
 const clientId = process.env.REACT_APP_TWITCH_ID;
 const clientSecret = process.env.REACT_APP_TWITCH_SECRET;
@@ -82,11 +83,15 @@ const Participants = () => {
         {usersData.map(user => (
           <div className="streamer" key={user.id}>
             <a href={`https://www.twitch.tv/${user.login}`} target="_blank" rel="noopener noreferrer">
-              <h3>{user.display_name}</h3>
-              <img src={user.profile_image_url} alt={user.display_name} />
-              <p>{user.description ? user.description : "Ce streamer n'a pas de bio."}</p>
-              <p>Followers: {user.followers}</p>
-              <div className={`islive ${user.isLive ? "online" : "offline"}`}></div>
+              <div className='streamer-title'>
+                <h3>{user.display_name}</h3>
+              </div>
+              <div className='streamer-infos'>
+                <img src={user.profile_image_url} alt={user.display_name} />
+                {/*<p>{user.description ? user.description : "Ce streamer n'a pas de bio."}</p>*/}
+                <p><HiUsers /> {user.followers}</p>
+              </div>
+              <div className={`streamer-islive ${user.isLive ? "online" : "offline"}`}></div>
             </a>
           </div>
         ))}
