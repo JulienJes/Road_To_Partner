@@ -54,13 +54,11 @@ const Participants = () => {
           }
         });
         const isLive = streamsData.data.length > 0;
-        const lastGameStreamed = isLive ? streamsData.data[0].game_name : '';
 
         const fullUsersData = {
           ...userData.data[0],
           followers: followersCount,
           isLive,
-          lastGameStreamed
         };
 
         allUsersData.push(fullUsersData);
@@ -88,9 +86,7 @@ const Participants = () => {
               <img src={user.profile_image_url} alt={user.display_name} />
               <p>{user.description ? user.description : "Ce streamer n'a pas de bio."}</p>
               <p>Followers: {user.followers}</p>
-              <p>Views: {user.view_count}</p>
-              <p>Last game streamed: {user.lastGameStreamed}</p>
-              <span>Live now: {user.isLive ? 'Yes' : 'No'}</span>
+              <div className={`islive ${user.isLive ? "online" : "offline"}`}></div>
             </a>
           </div>
         ))}
