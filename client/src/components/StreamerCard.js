@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import axios from "axios"
 import { HiUsers } from "react-icons/hi"
 import Loading from "./Loading"
@@ -8,10 +8,11 @@ const clientSecret = process.env.REACT_APP_TWITCH_SECRET
 
 const StreamerCard = () => {
     const [usersData, setUsersData] = useState(null)
+    const [accessToken, setAccessToken] = useState(null)
 
     useEffect(() => {
-        const fetchData = async () => {
-            const { data: tokenData } = await axios.post(
+        const fetchAccessToken = async () => {
+            const { data } = await axios.post(
                 "https://id.twitch.tv/oauth2/token",
                 null,
                 {
@@ -22,6 +23,15 @@ const StreamerCard = () => {
                     }
                 }
             )
+            setAccessToken(data.access_token)
+        }
+
+        fetchAccessToken()
+    }, [])
+
+    useEffect(() => {
+        const fetchAllUsersData = async () => {
+            if (!accessToken) return
 
             const users = [
                 "Pyyyyf",
@@ -50,15 +60,13 @@ const StreamerCard = () => {
                 "HelloMariane"
             ]
 
-            const allUsersData = []
-            for (let i = 0; i < users.length; i++) {
-                const user = users[i]
+            const promises = users.map(async (user) => {
                 const { data: userData } = await axios.get(
                     "https://api.twitch.tv/helix/users",
                     {
                         headers: {
                             "Client-ID": clientId,
-                            Authorization: `Bearer ${tokenData.access_token}`
+                            Authorization: `Bearer ${accessToken}`
                         },
                         params: {
                             login: user
@@ -68,7 +76,7 @@ const StreamerCard = () => {
 
                 if (!userData.data || !userData.data.length) {
                     console.log(`User ${user} does not exist`)
-                    continue
+                    return null
                 }
 
                 const userId = userData.data[0].id
@@ -78,7 +86,7 @@ const StreamerCard = () => {
                     {
                         headers: {
                             "Client-ID": clientId,
-                            Authorization: `Bearer ${tokenData.access_token}`
+                            Authorization: `Bearer ${accessToken}`
                         }
                     }
                 )
@@ -89,35 +97,35 @@ const StreamerCard = () => {
                     {
                         headers: {
                             "Client-ID": clientId,
-                            Authorization: `Bearer ${tokenData.access_token}`
+                            Authorization: `Bearer ${accessToken}`
                         }
                     }
                 )
                 const isLive = streamsData.data.length > 0
 
-                const fullUsersData = {
+                return {
                     ...userData.data[0],
                     followers: followersCount,
                     isLive
                 }
+            })
 
-                allUsersData.push(fullUsersData)
-            }
-
-            console.log(allUsersData)
-            setUsersData(allUsersData)
+            const allUsersData = await Promise.all(promises)
+            setUsersData(allUsersData.filter(Boolean))
         }
 
-        fetchData()
-    }, [])
+        fetchAllUsersData()
+    }, [accessToken])
 
-    if (!usersData) {
+    const memoizedUsersData = useMemo(() => usersData, [usersData])
+
+    if (!memoizedUsersData) {
         return <Loading />
     }
 
     return (
         <>
-            {usersData.map((user) => (
+            {memoizedUsersData.map((user) => (
                 <div className="streamer" key={user.id}>
                     <a
                         href={`https://www.twitch.tv/${user.login}`}

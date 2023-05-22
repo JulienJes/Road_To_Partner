@@ -36,7 +36,7 @@ function Edition() {
     }, [id])
 
     if (!edition) {
-        ;<Loading />
+        return <Loading />
     }
 
     return (
