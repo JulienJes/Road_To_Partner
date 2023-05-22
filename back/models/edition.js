@@ -8,6 +8,7 @@ const editionSchema = mongoose.Schema({
     inscription: {type: Date, required: true},
     condition: { type: String, required: true},
     process: { type: String, required: true},
+    participants: { type: [String] }
   }
 );
 
