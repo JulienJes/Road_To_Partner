@@ -1,48 +1,92 @@
-//import {NavLink} from "react-router-dom";
+import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import axios from "axios"
+import Loading from "../components/Loading"
 
-function Edition () {
+const baseUrl = process.env.REACT_APP_API_URL
+
+function Edition() {
+    const { id } = useParams()
+    const [edition, setEdition] = useState("")
+
+    const dateOptions = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    }
+    const dateEvent = new Date(edition.date)
+    const dateEventToString = dateEvent.toLocaleString("fr-FR", {
+        ...dateOptions
+    })
+    const dateEventString =
+        dateEventToString.replace(":", "h").charAt(0).toUpperCase() +
+        dateEventToString.slice(1)
+    const dateInscription = new Date(edition.inscription)
+    const dateInscriptionToString = dateInscription.toLocaleString("fr-FR", {
+        ...dateOptions
+    })
+    const dateString =
+        dateInscriptionToString.replace(":", "h").charAt(0).toUpperCase() +
+        dateInscriptionToString.slice(1)
+
+    useEffect(() => {
+        const fetchEditionData = async () => {
+            try {
+                const response = await axios.get(
+                    `${baseUrl}/api/edition/${id}`,
+                    {
+                        withCredentials: true
+                    }
+                )
+                setEdition(response.data)
+                console.log(response.data)
+                return response.data
+            } catch (error) {
+                console.error(
+                    "Erreur dans la récupération des données des éditions",
+                    error
+                )
+            }
+        }
+        fetchEditionData()
+    }, [id])
+
+    if (!edition) {
+        ;<Loading />
+    }
+
     return (
         <>
-        <div className="edition">
-            <h2>RTP#1 - PUBG</h2>
-            <div className="edition-sub">
-                <section className="presentation">
-                    <h3>Présentation</h3>
-                    <p>La première édition de PUBG a regroupé une dizaine de streameurs, tous affiliés<br/>
-                    4 parties sur 4 maps différentes (Erangel, Vikendi, Karakhin, Sanhok)<br/>
-                    L'apparition des zones était un peu accélérée en début de partie (jusqu'à phase 5 exclue)<br/>
-                    Mode FPP<br/>
-                    Le classement rapporte des points (100 points pour le premier, 99 pour le second et ainsi de suite)<br/>
-                    Les kills aussi (+1 point par kill)<br/>
-                    Le cumule des points de chaque partie établie un score total et donc le classement de l'édition<br/>
-                    Les participants doivent s'abonner (ou offrir un abonnement) et raid le gagnant!<br/>
-                    Chat en emote only à chaque lancement de partie<br/>
-                    Version PC du jeu (pas cross-consoles)</p>
-                </section>
-                <aside className="informations">
-                    <div className="informations-date">
-                        <h3>Dates</h3>
-                        <p>17 novembre 2022 à 20h00</p>
-                    </div>
-                    <div className="informations-inscription">
-                        <h3>Conditions d'inscription</h3>
-                        <p>Être affilié Twitch</p>
-                        <h3>Pour s'inscrire:</h3>
-                        <strong className="inscriptions-over">Inscriptions terminées!</strong>
-                        <p>Envoyez un <a href="mailto:jowystreaming@gmail.com" className="linkastext">mail</a> dans lequel vous précisez:</p>
-                        <ul>
-                            <li>Votre tag PUBG,</li>
-                            <li>Votre tag Discord,</li>
-                            <li>Le lien de votre chaîne Twitch!</li>
-                            <li>Rejoignez ce Discord</li>
-                        </ul>
-                        <p>Une fois fait, le rôle "RTP" vous sera assigné sur Discord et vous aurez accès à des chans réservés aux joueurs pour faciliter l'organisation.</p>
-                    </div>
-                </aside>
+            <div className="edition">
+                <h2>{edition.name}</h2>
+                <div className="edition-sub">
+                    <section className="presentation">
+                        <h3>Présentation</h3>
+                        <p>{edition.presentation}</p>
+                    </section>
+                    <aside className="informations">
+                        <div className="informations-date">
+                            <h3>Dates</h3>
+                            <p>{dateEventString}</p>
+                        </div>
+                        <div className="informations-inscription">
+                            <h3>Conditions d'inscription</h3>
+                            <p>{edition.condition}</p>
+                            <h3>Pour s'inscrire:</h3>
+                            <strong className="inscriptions-over">
+                                {dateInscription.getTime() < Date.now()
+                                    ? "Inscriptions terminées !"
+                                    : dateString}
+                            </strong>
+                        </div>
+                    </aside>
+                </div>
             </div>
-        </div>
         </>
-    );
-};
+    )
+}
 
-export default Edition;
+export default Edition

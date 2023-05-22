@@ -9,7 +9,7 @@ function Editions() {
     const [editions, setEditions] = useState("")
 
     useEffect(() => {
-        const fetchEditionData = async () => {
+        const fetchEditionsData = async () => {
             try {
                 const response = await axios.get(`${baseUrl}/api/edition/`, {
                     withCredentials: true
@@ -26,7 +26,7 @@ function Editions() {
                 )
             }
         }
-        fetchEditionData()
+        fetchEditionsData()
     }, [])
 
     if (!editions) {
@@ -39,8 +39,7 @@ function Editions() {
                 <div className="list">
                     {editions.map((edition, index) => {
                         let fadeIn = `fadein--${index + 1}`
-                        const date = new Date(edition.inscription)
-                        const options = {
+                        const dateOptions = {
                             weekday: "long",
                             year: "numeric",
                             month: "long",
@@ -48,25 +47,38 @@ function Editions() {
                             hour: "2-digit",
                             minute: "2-digit"
                         }
-                        const dateToString = date.toLocaleString("fr-FR", {
-                            ...options,
-                            timeZone: "Europe/Paris"
-                        })
-                        const dateString =
-                            dateToString
+                        const dateEvent = new Date(edition.date)
+                        const dateEventToString = dateEvent.toLocaleString(
+                            "fr-FR",
+                            {
+                                ...dateOptions
+                            }
+                        )
+                        const dateEventString =
+                            dateEventToString
                                 .replace(":", "h")
                                 .charAt(0)
-                                .toUpperCase() + dateToString.slice(1)
-
+                                .toUpperCase() + dateEventToString.slice(1)
+                        const dateInscription = new Date(edition.inscription)
+                        const dateInscriptionToString =
+                            dateInscription.toLocaleString("fr-FR", {
+                                ...dateOptions
+                            })
+                        const dateString =
+                            dateInscriptionToString
+                                .replace(":", "h")
+                                .charAt(0)
+                                .toUpperCase() +
+                            dateInscriptionToString.slice(1)
                         return (
                             <div className={`card ${fadeIn}`} key={edition._id}>
                                 <div className="card-title">
                                     <h3>{edition.name}</h3>
                                 </div>
                                 <div className="card-dates">
-                                    <p>{dateString}</p>
+                                    <p>{dateEventString}</p>
                                     <p className="inscriptions-over">
-                                        {date.getTime() < Date.now()
+                                        {dateInscription.getTime() < Date.now()
                                             ? "Évènement terminé"
                                             : dateString}
                                     </p>
