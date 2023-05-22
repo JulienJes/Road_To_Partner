@@ -1,10 +1,10 @@
-import {Routes, Route} from 'react-router-dom';
-import Home from '../../pages/Home';
-import Edition from '../../pages/Edition';
-import Edition2 from '../../pages/Edition2';
-import Participants from '../../pages/Participants';
-import Building from '../../pages/Building';
-import TwitchCallback from '../twitch/TwitchCallBack';
+import { Routes, Route } from "react-router-dom"
+import Home from "../../pages/Home"
+import Edition from "../../pages/Edition"
+import Edition2 from "../../pages/Edition2"
+import Participants from "../../pages/Participants"
+import Building from "../../pages/Building"
+import TwitchCallback from "../twitch/TwitchCallBack"
 
 function Index() {
     return (
@@ -12,11 +12,15 @@ function Index() {
             <Route path="/" exact="true" element={<Home />} />
             <Route path="/RTP1" exact="true" element={<Edition />} />
             <Route path="/RTP2" exact="true" element={<Edition2 />} />
-            <Route path="/participants" exact="true" element={<Participants />} />
+            <Route
+                path="/participants"
+                exact="true"
+                element={<Participants />}
+            />
             <Route path="/building" exact="true" element={<Building />} />
             <Route path="/auth/twitch/callback" element={<TwitchCallback />} />
         </Routes>
-    );
-};
+    )
+}
 
-export default Index;
+export default Index
