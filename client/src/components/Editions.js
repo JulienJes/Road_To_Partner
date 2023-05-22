@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import {NavLink} from "react-router-dom";
 import axios from 'axios';
+import Loading from '../components/Loading';
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
@@ -10,9 +11,10 @@ function Editions () {
     useEffect(() => {
         const fetchEditionData = async() => {
             try {
-                const response = await axios.get(`${baseUrl}/api/edition/` , { withCredentials: true })
-                setEditions(response.data)
-                return response.data
+                const response = await axios.get(`${baseUrl}/api/edition/`, { withCredentials: true })
+                const sortedEditions = response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
+                setEditions(sortedEditions)
+                return sortedEditions
             } catch (error) {
                 console.error(
                     "Erreur dans la récupération des données des éditions",
@@ -24,7 +26,7 @@ function Editions () {
     }, [])
 
     if(!editions) {
-        return <div>Chargement...</div>
+        return <Loading />
     }
 
     return (
@@ -35,9 +37,9 @@ function Editions () {
                         let fadeIn = `fadein--${index+1}`;
                         const date = new Date(edition.inscription);
                         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-                        const dateString = date.toLocaleString('fr-FR', {...options, timeZone: "Europe/Paris"}).replace(":", "h").charAt(0).toUpperCase() + date.toLocaleString('fr-FR', options).replace(":", "h").slice(1);
+                        const dateToString = date.toLocaleString('fr-FR', {...options, timeZone: "Europe/Paris"})
+                        const dateString = dateToString.replace(":", "h").charAt(0).toUpperCase() + dateToString.slice(1);
                         
-
                         return (
                             <div className={`card ${fadeIn}`} key={edition._id}>
                                 <div className="card-title">

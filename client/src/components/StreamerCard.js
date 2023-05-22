@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { HiUsers } from 'react-icons/hi';
+import Loading from './Loading'
 
 const clientId = process.env.REACT_APP_TWITCH_ID;
 const clientSecret = process.env.REACT_APP_TWITCH_SECRET;
@@ -73,7 +74,7 @@ const StreamerCard = () => {
   }, []);
 
   if (!usersData) {
-    return <div>Chargement...</div>;
+    return <Loading />
   }
 
   return (
