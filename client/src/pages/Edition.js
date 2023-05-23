@@ -46,7 +46,12 @@ function Edition() {
                 <div className="edition-sub">
                     <section className="presentation">
                         <h3>Présentation</h3>
-                        <p>{edition.presentation}</p>
+                        {edition.presentation
+                            .split(/[.!?]/)
+                            .filter((sentence) => sentence !== "")
+                            .map((sentence, index) => (
+                                <p key={index}>{sentence.trim()}.</p>
+                            ))}
                     </section>
                     <aside className="informations">
                         <div className="informations-date">
