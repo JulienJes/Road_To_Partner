@@ -1,4 +1,4 @@
-import StreamerCard from "../components/StreamerCard"
+import StreamerCard from "../components/cards/StreamerCard"
 
 const Participants = () => {
     return (

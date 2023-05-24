@@ -1,6 +1,6 @@
 const TwitchStream = ({ channel }) => (
     <iframe
-        src={`https://player.twitch.tv/?channel=${channel}&parent=www.example.com`}
+        src={`https://player.twitch.tv/?channel=${channel}&parent=http://localhost:3000/`}
         height="720"
         width="1280"
         allowfullscreen="true"
