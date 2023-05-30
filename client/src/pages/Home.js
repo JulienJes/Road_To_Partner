@@ -1,6 +1,7 @@
 //import { NavLink } from "react-router-dom";
 import Editions from "../components/Editions"
-import TwitchStream from "../components/TwitchStream"
+import UserStreams from "../components/twitch/UserStreams"
+import TwitchStream from "../components/twitch/TwitchStream"
 
 function Home() {
     return (
@@ -30,7 +31,7 @@ function Home() {
                         <h3>Ces participants sont en live!</h3>
                     </div>
                     <div>
-                        <TwitchStream channel="Sovannya" />
+                        <UserStreams />
                     </div>
                 </div>
             </aside>
