@@ -1,7 +1,6 @@
 //import { NavLink } from "react-router-dom";
 import Editions from "../components/Editions"
 import UserStreams from "../components/twitch/UserStreams"
-import TwitchStream from "../components/twitch/TwitchStream"
 
 function Home() {
     return (
@@ -28,10 +27,7 @@ function Home() {
             <aside>
                 <div>
                     <div>
-                        <h3>Ces participants sont en live!</h3>
-                    </div>
-                    <div>
-                        <UserStreams />
+                        <UserStreams users={["BonbonBleue"]} />
                     </div>
                 </div>
             </aside>
